@@ -29,17 +29,23 @@ public class UserServiceImp implements UserService {
 
 	@Override
 	public List<User> getUserList() {
-
 		List<User> users = repo.getUserList();
-
 		return users;
 	}
 
 	@Override
 	public void addUser(User user) {
-
 		repo.addUser(user);
+	}
 
+	@Override
+	public void updateUser(User user) {
+		repo.updateUser(user);		
+	}
+
+	@Override
+	public void deletUser(Long id) {
+		repo.deleteUser(id);
 	}
 
 }

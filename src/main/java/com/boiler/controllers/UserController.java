@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -45,6 +47,18 @@ public class UserController {
 	@ResponseStatus(HttpStatus.OK)
 	public void addUser(@Valid @RequestBody User user) {		
 		service.addUser(user);
+	}
+	
+	@PutMapping("/users")
+	@ResponseStatus(HttpStatus.OK)
+	public void updateUser(@Valid @RequestBody User user) {
+		service.updateUser(user);
+	}
+	
+	@DeleteMapping("/users/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public void deleteUser(@PathVariable String id) {		
+		service.deletUser(Long.parseLong(id));
 	}
 
 }

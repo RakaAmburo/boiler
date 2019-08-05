@@ -32,5 +32,15 @@ public class UserRepo {
 		String sql = "INSERT INTO people (first_name, last_name) values (?, ?)";
 		jdbcTemplate.update(sql, user.getFirstName(), user.getLastName());
 	}
+	
+	public void updateUser(User user) {
+		String sql = "UPDATE people SET first_name=?, last_name=? WHERE id=?";
+	    jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getId());
+	}
+	
+	public void deleteUser(Long id) {
+		String sql = "DELETE FROM people WHERE id=?";
+		jdbcTemplate.update(sql, id);
+	}
 
 }
