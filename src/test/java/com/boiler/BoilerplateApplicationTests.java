@@ -1,4 +1,4 @@
-package com.example.boilerplate;
+package com.boiler;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -10,8 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.boilerplate.services.User;
-
+import com.boiler.services.UserService;
 
 import static org.mockito.BDDMockito.given;
 
@@ -30,7 +29,7 @@ public class BoilerplateApplicationTests {
 	
 	@MockBean
 	@Qualifier("userService")
-    private User userService;
+    private UserService userService;
 	
 	@Test
 	public void testCont() throws Exception {

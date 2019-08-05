@@ -1,4 +1,4 @@
-package com.example.boilerplate.configuration.controllers;
+package com.boiler.config.controllers;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

@@ -1,6 +1,6 @@
-package com.example.boilerplate.controllers;
+package com.boiler.controllers;
 
-import javax.validation.constraints.Max;
+
 import javax.validation.constraints.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.boiler.services.UserService;
+
 @RestController
 @Validated
 public class User {
 
 	@Autowired
 	@Qualifier("userService")
-	private com.example.boilerplate.services.User userService;
+	private UserService userService;
 
 	@GetMapping("/users/{id}")
 	@ResponseStatus(HttpStatus.OK)

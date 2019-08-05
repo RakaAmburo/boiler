@@ -1,4 +1,4 @@
-package com.example.boilerplate.configuration.controllers;
+package com.boiler.config.controllers;
 
 import java.util.List;
 import java.util.Map;

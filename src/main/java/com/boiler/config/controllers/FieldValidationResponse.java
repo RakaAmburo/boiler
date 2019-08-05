@@ -1,4 +1,4 @@
-package com.example.boilerplate.configuration.controllers;
+package com.boiler.config.controllers;
 
 public class FieldValidationResponse {
     
