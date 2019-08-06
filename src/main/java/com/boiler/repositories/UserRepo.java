@@ -3,6 +3,7 @@ package com.boiler.repositories;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,9 @@ public class UserRepo {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Value("${queries.users.selectAll}")
+	private String selectAllQueryList;
 
 	public int count() {
 		return jdbcTemplate.queryForObject("select count(*) from people", Integer.class);
@@ -27,7 +31,7 @@ public class UserRepo {
 
 	public List<User> getUserList() {
 
-		String sql = "select id, first_name, last_name, balance from people";
+		String sql = selectAllQueryList;
 		RowMapper<User> rowMapper = new UserRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 

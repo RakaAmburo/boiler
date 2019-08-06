@@ -2,6 +2,9 @@ package com.boiler.entities;
 
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 public class User {
 
 	private Long id;
@@ -28,6 +31,7 @@ public class User {
 		this.firstName = firstName;
 	}
 
+	@JsonProperty("last_name")
 	public String getLastName() {
 		return lastName;
 	}
@@ -43,5 +47,5 @@ public class User {
 	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
-
+	
 }

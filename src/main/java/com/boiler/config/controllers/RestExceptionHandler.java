@@ -3,7 +3,6 @@ package com.boiler.config.controllers;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,9 +10,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.validation.FieldError;
@@ -27,8 +23,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class RestExceptionHandler {
 
-	@Autowired
-	private MessageSource messageSource;
+	//@Autowired
+	//private MessageSource messageSource;
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -77,11 +73,11 @@ public class RestExceptionHandler {
 		MessageDTO message = new MessageDTO();
 		List<FieldValidationResponse> items = new LinkedList<>();
 		message.setMessagetype(MessageType.ERROR);
-		//message.setMessage("Validation prolbem.");
+		//message.setMessage("Validation problem.");
 		String pepe = violations.stream().findFirst().get().getMessageTemplate();
 		message.setMessage(pepe);
 		message.setItems(items);
-		Locale currentLocale = LocaleContextHolder.getLocale();
+		//Locale currentLocale = LocaleContextHolder.getLocale();
 
 		/*for (ConstraintViolation<?> constraintViolation : violations) {
 			String template = constraintViolation.getMessageTemplate();

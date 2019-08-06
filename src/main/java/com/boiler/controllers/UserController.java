@@ -35,7 +35,7 @@ public class UserController {
 
 	@GetMapping("/users/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void userInfo(@PathVariable @Pattern(message = "saranguin not funkin", regexp = "^[0-9]+$") String id) {
+	public void userInfo(@PathVariable @Pattern(message = "Should provide a number", regexp = "^[0-9]+$") String id) {
 		service.findById(1);
 	}
 	
@@ -76,14 +76,18 @@ public class UserController {
 	
 	/*
 	transactions OK
-	tests
+	tests        OK
 	generics
 	abstract controller
-	mensajes de error valiation
-	levantar properteis
+	mensajes de error valiation      OK
+	levantar properteis              OK
 	c3po
 	ver si se puede poner jpa sin joder jdbc 
 	headers
-	tokens */
+	tokens 
+	
+	cargar properties en caliente
+	lambda
+	*/
 
 }
