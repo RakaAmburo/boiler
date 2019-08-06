@@ -4,9 +4,10 @@ import javax.validation.constraints.Pattern;
 
 public class User {
 
-	Long id;
-	String firstName;
-	String lastName;
+	private Long id;
+	private String firstName;
+	private String lastName;
+	private Double balance;
 
 	public Long getId() {
 		return id;
@@ -33,6 +34,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
 	}
 
 }

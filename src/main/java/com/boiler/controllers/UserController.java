@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.boiler.entities.TransferFunds;
 import com.boiler.entities.User;
+import com.boiler.repositories.InsufficientAccountBalanceException;
 import com.boiler.services.UserService;
 
 @RestController
@@ -60,5 +62,28 @@ public class UserController {
 	public void deleteUser(@PathVariable String id) {		
 		service.deletUser(Long.parseLong(id));
 	}
+	
+	@PutMapping("/users/transfer")
+	@ResponseStatus(HttpStatus.OK)
+	public void transferFund(@RequestBody TransferFunds tf) throws InsufficientAccountBalanceException {
+		
+		User u1 = new User();
+		u1.setId(tf.getOriginId());
+		User u2 = new User();
+		u2.setId(tf.getDestId());
+		service.transferFund(u1, u2, tf.getAmount());
+	}
+	
+	/*
+	transactions OK
+	tests
+	generics
+	abstract controller
+	mensajes de error valiation
+	levantar properteis
+	c3po
+	ver si se puede poner jpa sin joder jdbc 
+	headers
+	tokens */
 
 }

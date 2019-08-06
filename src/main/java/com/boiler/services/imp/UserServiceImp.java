@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.boiler.entities.User;
+import com.boiler.repositories.InsufficientAccountBalanceException;
 import com.boiler.repositories.UserRepo;
 import com.boiler.services.UserService;
 
@@ -46,6 +48,14 @@ public class UserServiceImp implements UserService {
 	@Override
 	public void deletUser(Long id) {
 		repo.deleteUser(id);
+	}
+	
+	@Transactional
+	public void transferFund(User fromAccount, User toAccount,
+			Double amount) throws InsufficientAccountBalanceException {
+		
+		repo.withdraw(fromAccount, toAccount, amount);
+		repo.deposit(fromAccount, toAccount, amount);
 	}
 
 }
