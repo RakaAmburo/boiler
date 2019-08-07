@@ -1,7 +1,5 @@
 package com.boiler.services;
 
-import static org.mockito.BDDMockito.given;
-
 import java.util.Arrays;
 import java.util.List;
 

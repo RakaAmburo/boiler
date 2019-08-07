@@ -3,6 +3,7 @@ package com.boiler.controllers;
 
 import java.util.List;
 
+import javax.sql.DataSource;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -25,9 +26,13 @@ import com.boiler.entities.User;
 import com.boiler.repositories.InsufficientAccountBalanceException;
 import com.boiler.services.UserService;
 
+
 @RestController
 @Validated
-public class UserController {
+public class UserController extends AbsctractController {
+	
+	@Autowired
+    DataSource dataSource;
 
 	@Autowired
 	@Qualifier("userService")
@@ -35,7 +40,8 @@ public class UserController {
 
 	@GetMapping("/users/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void userInfo(@PathVariable @Pattern(message = "Should provide a number", regexp = "^[0-9]+$") String id) {
+	public void userInfo(@PathVariable @Pattern(message = "Should provide a number", regexp = ONLY_ALFA) String id) {
+		System.out.println("DATASOURCE = " + dataSource);
 		service.findById(1);
 	}
 	
@@ -77,16 +83,15 @@ public class UserController {
 	/*
 	transactions OK
 	tests        OK
-	generics
-	abstract controller
+	generics     OK(projectOne)
+	abstract controller  OK
 	mensajes de error valiation      OK
 	levantar properteis              OK
-	c3po
-	ver si se puede poner jpa sin joder jdbc 
+	pool  OK  
+	ver si se puede poner jpa sin joder jdbc ALTERNATIVE DATASOURCE
 	headers
 	tokens 
 	
-	cargar properties en caliente
 	lambda
 	*/
 

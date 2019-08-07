@@ -39,8 +39,8 @@ public class UserRepo {
 
 	public void addUser(User user) {
 
-		String sql = "INSERT INTO people (first_name, last_name) values (?, ?)";
-		jdbcTemplate.update(sql, user.getFirstName(), user.getLastName());
+		String sql = "INSERT INTO people (first_name, last_name, balance) values (?, ?, ?)";
+		jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getBalance());
 	}
 	
 	public void updateUser(User user) {

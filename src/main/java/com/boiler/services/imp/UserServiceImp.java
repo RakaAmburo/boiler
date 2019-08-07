@@ -23,7 +23,7 @@ public class UserServiceImp implements UserService {
 		System.out.println("printing result");
 		System.out.println(repo.count());
 
-		repo.getUserList().stream().forEach(item -> System.out.println(item));
+		repo.getUserList().stream().forEach(item -> System.out.println(item.getFirstName()));
 
 		return true;
 
