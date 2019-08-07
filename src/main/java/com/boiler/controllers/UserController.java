@@ -3,7 +3,7 @@ package com.boiler.controllers;
 
 import java.util.List;
 
-import javax.sql.DataSource;
+//import javax.sql.DataSource;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -31,8 +31,8 @@ import com.boiler.services.UserService;
 @Validated
 public class UserController extends AbsctractController {
 	
-	@Autowired
-    DataSource dataSource;
+	/*@Autowired
+    DataSource dataSource;*/
 
 	@Autowired
 	@Qualifier("userService")
@@ -41,7 +41,7 @@ public class UserController extends AbsctractController {
 	@GetMapping("/users/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void userInfo(@PathVariable @Pattern(message = "Should provide a number", regexp = ONLY_ALFA) String id) {
-		System.out.println("DATASOURCE = " + dataSource);
+		//System.out.println("DATASOURCE = " + dataSource);
 		service.findById(1);
 	}
 	

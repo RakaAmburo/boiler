@@ -51,7 +51,7 @@ public class UserControllersTests {
         // when + then
         this.mockMvc.perform(get("/users"))
                 .andExpect(status().isOk())
-                .andExpect(content().json("[{'id': 1,'firstName': 'pablo', 'last_name': 'paparini', 'balance': 100.0}]"));
+                .andExpect(content().json("[{'id': 1, 'last_name': 'paparini', 'firstName': 'pablo', 'balance': 100.0}]"));
 	}
 
 }
