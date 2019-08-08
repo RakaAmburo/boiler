@@ -2,6 +2,7 @@ package com.boiler.services;
 
 import java.util.List;
 
+import com.boiler.entities.Employee;
 import com.boiler.entities.User;
 import com.boiler.repositories.InsufficientAccountBalanceException;
 
@@ -19,5 +20,7 @@ public interface UserService {
 	
 	public void transferFund(User fromAccount, User toAccount,
 			Double amount) throws InsufficientAccountBalanceException;
+	
+	public Employee getEmployeeById();
 
 }

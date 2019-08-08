@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.boiler.entities.Employee;
 import com.boiler.entities.TransferFunds;
 import com.boiler.entities.User;
 import com.boiler.repositories.InsufficientAccountBalanceException;
@@ -80,7 +81,14 @@ public class UserController extends AbsctractController {
 		service.transferFund(u1, u2, tf.getAmount());
 	}
 	
+	@GetMapping("/employee")
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Employee getEmployee() {
+		return service.getEmployeeById();
+	}
+	
 	/*
+	INVETIGAR PROJECTOS EN MELI
 	transactions OK
 	tests        OK
 	generics     OK(projectOne)
@@ -90,9 +98,15 @@ public class UserController extends AbsctractController {
 	pool  OK  
 	ver si se puede poner jpa sin joder jdbc ALTERNATIVE DATASOURCE
 	headers
+	
 	tokens 
 	
 	lambda
+	
+	mvn dependency:resolve
+    mvn clean install
+    mvn spring-boot:run
+    mvn test
 	*/
 
 }

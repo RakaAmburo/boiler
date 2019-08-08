@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.boiler.entities.Employee;
 import com.boiler.entities.User;
+import com.boiler.repositories.EmployeeRestRepo;
 import com.boiler.repositories.InsufficientAccountBalanceException;
 import com.boiler.repositories.UserRepo;
 import com.boiler.services.UserService;
@@ -16,6 +18,9 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	private UserRepo repo;
+	
+	@Autowired
+	private EmployeeRestRepo empRepo;
 
 	@Override
 	public boolean findById(Integer id) {
@@ -56,6 +61,15 @@ public class UserServiceImp implements UserService {
 		
 		repo.withdraw(fromAccount, toAccount, amount);
 		repo.deposit(fromAccount, toAccount, amount);
+	}
+	
+	@Override
+	public Employee getEmployeeById(){
+		
+		Employee emp = empRepo.getEmployeeById();
+		
+		return emp;
+		
 	}
 
 }
