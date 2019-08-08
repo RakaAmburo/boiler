@@ -10,4 +10,9 @@ public class RestTemplateClient {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+	
+	@Bean
+    public RestTemplate restTemplateIV() {
+        return new RestTemplate();
+    }
 }

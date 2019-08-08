@@ -60,6 +60,7 @@ public class UserServiceImp implements UserService {
 			Double amount) throws InsufficientAccountBalanceException {
 		
 		repo.withdraw(fromAccount, toAccount, amount);
+		
 		repo.deposit(fromAccount, toAccount, amount);
 	}
 	
