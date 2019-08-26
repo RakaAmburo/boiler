@@ -88,19 +88,22 @@ public class UserController extends AbsctractController {
 	}
 	
 	/*
-	INVETIGAR PROJECTOS EN MELI
 	transactions OK
+	transactions mas complex
+	
 	tests        OK
+	test mas complex
+	
 	generics     OK(projectOne)
+	generics buen ejemplo en este projectoç
 	abstract controller  OK
 	mensajes de error valiation      OK
+	mejorar mensajes de validacion
 	levantar properteis              OK
 	pool  OK  
 	ver si se puede poner jpa sin joder jdbc ALTERNATIVE DATASOURCE
-	headers
-	
-	tokens 
-	
+	headers	
+	tokens 	
 	lambda
 	
 	mvn dependency:resolve
