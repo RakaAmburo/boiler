@@ -17,8 +17,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.boiler.entities.User;
-import com.boiler.services.UserService;
+import com.boiler.entities.People;
+import com.boiler.services.PeopleService;
 
 @RunWith(SpringRunner.class)
 //@SpringBootTest
@@ -31,21 +31,21 @@ public class UserControllersTests {
 	
 	
 	@MockBean
-	@Qualifier("userService")
-    private UserService userService;
+	@Qualifier("userServiceImp")
+    private PeopleService userService;
 	
 	@Test
 	public void testUserList() throws Exception {
 		
 		
 		// given
-        User user = new User();
+        People user = new People();
         user.setId(Long.valueOf(1));
         user.setFirstName("pablo");
         user.setLastName("paparini");
         user.setBalance(Double.valueOf(100));
 
-        List<User> users = Arrays.asList(user);
+        List<People> users = Arrays.asList(user);
         given(userService.getUserList()).willReturn(users);
 
         // when + then

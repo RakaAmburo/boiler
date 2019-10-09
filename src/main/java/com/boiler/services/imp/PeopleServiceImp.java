@@ -7,17 +7,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.boiler.entities.Employee;
-import com.boiler.entities.User;
+import com.boiler.entities.People;
 import com.boiler.repositories.EmployeeRestRepo;
 import com.boiler.repositories.InsufficientAccountBalanceException;
-import com.boiler.repositories.UserRepo;
-import com.boiler.services.UserService;
+import com.boiler.repositories.PeopleRepo;
+import com.boiler.services.PeopleService;
 
-@Service(value = "userService")
-public class UserServiceImp implements UserService {
+@Service(value = "userServiceImp")
+public class PeopleServiceImp implements PeopleService {
 
 	@Autowired
-	private UserRepo repo;
+	private PeopleRepo repo;
 	
 	@Autowired
 	private EmployeeRestRepo empRepo;
@@ -35,18 +35,18 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public List<User> getUserList() {
-		List<User> users = repo.getUserList();
+	public List<People> getUserList() {
+		List<People> users = repo.getUserList();
 		return users;
 	}
 
 	@Override
-	public void addUser(User user) {
+	public void addUser(People user) {
 		repo.addUser(user);
 	}
 
 	@Override
-	public void updateUser(User user) {
+	public void updateUser(People user) {
 		repo.updateUser(user);		
 	}
 
@@ -56,7 +56,7 @@ public class UserServiceImp implements UserService {
 	}
 	
 	@Transactional
-	public void transferFund(User fromAccount, User toAccount,
+	public void transferFund(People fromAccount, People toAccount,
 			Double amount) throws InsufficientAccountBalanceException {
 		
 		repo.withdraw(fromAccount, toAccount, amount);

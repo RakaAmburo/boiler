@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.boiler.services.UserService;
+import com.boiler.services.PeopleService;
 
 import static org.mockito.BDDMockito.given;
 
@@ -27,8 +27,8 @@ public class BoilerplateApplicationTests {
 	
 	
 	@MockBean
-	@Qualifier("userService")
-    private UserService userService;
+	@Qualifier("userServiceImp")
+    private PeopleService userService;
 	
 	@Test
 	public void testCont() throws Exception {

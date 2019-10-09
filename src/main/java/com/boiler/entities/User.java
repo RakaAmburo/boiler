@@ -1,16 +1,23 @@
 package com.boiler.entities;
 
-import javax.validation.constraints.Pattern;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Set;
 
 
 public class User {
 
 	private Long id;
-	private String firstName;
-	private String lastName;
-	private Double balance;
+	private String userName;
+	private String passWord;
+	
+	private Set<Role> roles;
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
 	public Long getId() {
 		return id;
@@ -20,32 +27,20 @@ public class User {
 		this.id = id;
 	}
 
-	// @NotBlank(message = "fist name should not be empty!")
-	// @Size(min = 3, max = 30, message = "error.field.size")
-	@Pattern(regexp="[a-zA-Z]+")
-	public String getFirstName() {
-		return firstName;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	@JsonProperty("last_name")
-	public String getLastName() {
-		return lastName;
+	public String getPassWord() {
+		return passWord;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
 
-	public Double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(Double balance) {
-		this.balance = balance;
-	}
-	
 }

@@ -3,22 +3,22 @@ package com.boiler.services;
 import java.util.List;
 
 import com.boiler.entities.Employee;
-import com.boiler.entities.User;
+import com.boiler.entities.People;
 import com.boiler.repositories.InsufficientAccountBalanceException;
 
-public interface UserService {
+public interface PeopleService {
 	
 	boolean findById(Integer id);
 	
-	public List<User> getUserList();
+	public List<People> getUserList();
 	
-	public void addUser(User user);
+	public void addUser(People user);
 	
-	public void updateUser(User user);
+	public void updateUser(People user);
 	
 	public void deletUser(Long id);
 	
-	public void transferFund(User fromAccount, User toAccount,
+	public void transferFund(People fromAccount, People toAccount,
 			Double amount) throws InsufficientAccountBalanceException;
 	
 	public Employee getEmployeeById();

@@ -9,9 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.boiler.entities.User;
-import com.boiler.repositories.UserRepo;
-import com.boiler.services.imp.UserServiceImp;
+import com.boiler.entities.People;
+import com.boiler.repositories.PeopleRepo;
+import com.boiler.services.imp.PeopleServiceImp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
@@ -20,27 +20,27 @@ import static org.mockito.Mockito.doReturn;
 public class UserServiceImpTest {
 	
 	@Mock
-	private UserRepo userRepo;
+	private PeopleRepo userRepo;
 	
 	@InjectMocks
-	private UserServiceImp userService;
+	private PeopleServiceImp userService;
 	
 	@Test
     public void whenGetUserList_thenReturnUserList() {
 		
 		// given
-        User user = new User();
+        People user = new People();
         user.setId(Long.valueOf(1));
         user.setFirstName("pablo");
         user.setLastName("paparini");
         user.setBalance(Double.valueOf(100));
 
-        List<User> users = Arrays.asList(user);      
+        List<People> users = Arrays.asList(user);      
         
         doReturn(users).when(userRepo).getUserList();
         
         // when
-        List<User> actualUsers = userService.getUserList();
+        List<People> actualUsers = userService.getUserList();
         
 
         // then
