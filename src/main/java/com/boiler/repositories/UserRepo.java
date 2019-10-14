@@ -1,12 +1,14 @@
 package com.boiler.repositories;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.boiler.entities.Role;
 import com.boiler.entities.User;
 
 @Repository
@@ -15,10 +17,16 @@ public class UserRepo {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	@Autowired
+	private RoleRepo roleRepo;
+	
 	public User findByUsername(String userName) {
 		String sql = "select id, username, password from users where username = ?";
 		RowMapper<User> rowMapper = new UserRowMapper();
-		return this.jdbcTemplate.queryForObject(sql, rowMapper, userName);
+		User user = this.jdbcTemplate.queryForObject(sql, rowMapper, userName);
+		Set<Role> roleList = roleRepo.getRoleByUserId(user.getId());
+		user.setRoles(roleList);
+		return user;
 	}
 
 	public User getUser(Long id) {

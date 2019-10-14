@@ -4,8 +4,6 @@ import static com.boiler.config.security.Constants.HEADER_STRING;
 import static com.boiler.config.security.Constants.TOKEN_PREFIX;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -59,8 +56,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		}
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
            
-			Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-			authorities.add(new SimpleGrantedAuthority("ROLE_" + "ADMIN"));
+			//Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+			//authorities.add(new SimpleGrantedAuthority("ROLE_" + "ADMIN"));	
 
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 

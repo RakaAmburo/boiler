@@ -16,39 +16,40 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.logging.Logger;
 
-
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService {
-	
+
 	@Autowired
 	private UserRepo userDao;
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptEncoder;
-	
+
 	private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class.getName());
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userDao.findByUsername(username);
-		
-		if(user == null){
+
+		if (user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
-		
-		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassWord(), getAuthority(user));
+
+		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassWord(),
+				getAuthority(user));
 	}
 
 	private Set<SimpleGrantedAuthority> getAuthority(User user) {
-		/*
-		 * Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-		 * user.getRoles().forEach(role -> { //authorities.add(new
-		 * SimpleGrantedAuthority(role.getName())); authorities.add(new
-		 * SimpleGrantedAuthority("ROLE_" + role.getName()));
-		 * 
-		 * });
-		 */
-		//return authorities;
-		return new HashSet<SimpleGrantedAuthority>(Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+
+		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+		user.getRoles().forEach(role -> { // authorities.add(new SimpleGrantedAuthority(role.getName()));
+			authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
+
+		});
+
+		return authorities;
+
+		// return new HashSet<SimpleGrantedAuthority>(Arrays.asList(new
+		// SimpleGrantedAuthority("ROLE_ADMIN")));
 	}
 
 	public List<User> findAll() {
@@ -57,27 +58,24 @@ public class UserServiceImpl implements UserDetailsService {
 		return list;
 	}
 
-	
 	public void delete(long id) {
 		userDao.deleteUser(id);
 	}
-
 
 	public User findOne(String username) {
 		return userDao.findByUsername(username);
 	}
 
-	
 	@Cacheable(value = "userbyid", key = "#id")
 	public User findById(Long id) {
 		LOGGER.info("find one user not cached!");
 		return userDao.getUser(id);
 	}
 
-    public void save(UserDto user) {
-	    User newUser = new User();
-	    newUser.setUserName(user.getUsername());
-	    newUser.setPassWord(bcryptEncoder.encode(user.getPassword()));
-        userDao.addUser(newUser);
-    }
+	public void save(UserDto user) {
+		User newUser = new User();
+		newUser.setUserName(user.getUsername());
+		newUser.setPassWord(bcryptEncoder.encode(user.getPassword()));
+		userDao.addUser(newUser);
+	}
 }

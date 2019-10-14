@@ -59,7 +59,7 @@ public class PeopleController extends AbsctractController {
 	}
 	
 	@PostMapping("/users")
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	public void addUser(@Valid @RequestBody People user) {		
 		service.addUser(user);
 	}
@@ -109,13 +109,16 @@ public class PeopleController extends AbsctractController {
 	pool  OK  
 	ver si se puede poner jpa sin joder jdbc ALTERNATIVE DATASOURCE
 	headers	ok
-	tokens 	
+	tokens 	ok
 	lambda
+	preauthorize
+	viewProfiles
 	
 	mvn dependency:resolve
     mvn clean install
     mvn spring-boot:run
     mvn test
+    java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n    -jar target/boilerplate-0.0.1-SNAPSHOT.jar
 	*/
 
 }
